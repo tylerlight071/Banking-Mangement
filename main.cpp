@@ -125,16 +125,19 @@ int main()
         {
         case '1':
             write_account();
+            cout << "\n\nAccount created successfully!";
             break;
         case '2':
             cout << "\n\n\tEnter The account No. : ";
             cin >> num;
             deposit_withdraw(num, 1);
+            cout << "\n\nAmount deposited successfully!";
             break;
         case '3':
             cout << "\n\n\tEnter The account No. : ";
             cin >> num;
             deposit_withdraw(num, 2);
+            cout << "\n\nAmount withdrawn successfully!";
             break;
         case '4':
             cout << "\n\n\tEnter The account No. : ";
@@ -148,17 +151,19 @@ int main()
             cout << "\n\n\tEnter The account No. : ";
             cin >> num;
             delete_account(num);
+            cout << "\n\nAccount closed successfully!";
             break;
         case '7':
             cout << "\n\n\tEnter The account No. : ";
             cin >> num;
             modify_account(num);
+            cout << "\n\nAccount modified successfully!";
             break;
         case '8':
             cout << "\n\n\tThanks for using bank managemnt system";
             break;
         default:
-            cout << "\a";
+            cout << "\n\n\tInvalid option. Please select a number between 1 and 8.";
         }
         cin.ignore();
         cin.get();
