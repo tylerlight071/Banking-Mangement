@@ -2,7 +2,7 @@
 #include <fstream>
 #include <cctype>
 #include <iomanip>
-#include <limits>  // For numeric limits
+#include <limits>
 
 using namespace std;
 
@@ -28,7 +28,8 @@ public:
 void account::create_account()
 {
     cout << "\nEnter The account No. :";
-    while (!(cin >> acno) || acno < 0) {
+    while (!(cin >> acno) || acno < 0)
+    {
         cout << "Invalid input. Please enter a positive integer for the account number: ";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -39,13 +40,15 @@ void account::create_account()
     cout << "\nEnter Type of The account (C/S) : ";
     cin >> type;
     type = toupper(type);
-    while (type != 'C' && type != 'S') {
+    while (type != 'C' && type != 'S')
+    {
         cout << "Invalid input. Please enter 'C' for Current or 'S' for Saving: ";
         cin >> type;
         type = toupper(type);
     }
     cout << "\nEnter The Initial amount (>=500 for Saving and >=1000 for Current) : ";
-    while (!(cin >> deposit) || ((type == 'S' && deposit < 500) || (type == 'C' && deposit < 1000))) {
+    while (!(cin >> deposit) || ((type == 'S' && deposit < 500) || (type == 'C' && deposit < 1000)))
+    {
         cout << "Invalid input. Please enter a valid initial amount (>=500 for Saving and >=1000 for Current): ";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -70,13 +73,15 @@ void account::modify()
     cout << "\nModify Type of Account (C/S) : ";
     cin >> type;
     type = toupper(type);
-    while (type != 'C' && type != 'S') {
+    while (type != 'C' && type != 'S')
+    {
         cout << "Invalid input. Please enter 'C' for Current or 'S' for Saving: ";
         cin >> type;
         type = toupper(type);
     }
     cout << "\nModify Balance amount : ";
-    while (!(cin >> deposit) || deposit < 0) {
+    while (!(cin >> deposit) || deposit < 0)
+    {
         cout << "Invalid input. Please enter a positive amount: ";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -85,7 +90,8 @@ void account::modify()
 
 void account::dep(int x)
 {
-    if (x < 0) {
+    if (x < 0)
+    {
         cout << "Invalid deposit amount. Cannot be negative." << endl;
         return;
     }
@@ -94,11 +100,13 @@ void account::dep(int x)
 
 void account::draw(int x)
 {
-    if (x < 0) {
+    if (x < 0)
+    {
         cout << "Invalid withdraw amount. Cannot be negative." << endl;
         return;
     }
-    if (deposit - x < 0) {
+    if (deposit - x < 0)
+    {
         cout << "Insufficient balance." << endl;
         return;
     }
@@ -163,7 +171,8 @@ int main()
             break;
         case '2':
             cout << "\n\n\tEnter The account No. : ";
-            while (!(cin >> num) || num < 0) {
+            while (!(cin >> num) || num < 0)
+            {
                 cout << "Invalid input. Please enter a positive integer for the account number: ";
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -173,7 +182,8 @@ int main()
             break;
         case '3':
             cout << "\n\n\tEnter The account No. : ";
-            while (!(cin >> num) || num < 0) {
+            while (!(cin >> num) || num < 0)
+            {
                 cout << "Invalid input. Please enter a positive integer for the account number: ";
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -183,7 +193,8 @@ int main()
             break;
         case '4':
             cout << "\n\n\tEnter The account No. : ";
-            while (!(cin >> num) || num < 0) {
+            while (!(cin >> num) || num < 0)
+            {
                 cout << "Invalid input. Please enter a positive integer for the account number: ";
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -195,7 +206,8 @@ int main()
             break;
         case '6':
             cout << "\n\n\tEnter The account No. : ";
-            while (!(cin >> num) || num < 0) {
+            while (!(cin >> num) || num < 0)
+            {
                 cout << "Invalid input. Please enter a positive integer for the account number: ";
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -205,7 +217,8 @@ int main()
             break;
         case '7':
             cout << "\n\n\tEnter The account No. : ";
-            while (!(cin >> num) || num < 0) {
+            while (!(cin >> num) || num < 0)
+            {
                 cout << "Invalid input. Please enter a positive integer for the account number: ";
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -214,7 +227,7 @@ int main()
             cout << "\n\nAccount modified successfully!";
             break;
         case '8':
-            cout << "\n\n\tThanks for using bank management system";
+            cout << "\n\n\tThanks for using Lightwood Bank";
             break;
         default:
             cout << "\n\n\tInvalid option. Please select a number between 1 and 8.";
@@ -231,13 +244,15 @@ void write_account()
     account ac;
     ofstream outFile;
     outFile.open("account.dat", ios::binary | ios::app);
-    if (!outFile) {
+    if (!outFile)
+    {
         cout << "Error: File could not be opened for writing." << endl;
         return;
     }
     ac.create_account();
     outFile.write(reinterpret_cast<char *>(&ac), sizeof(account));
-    if (!outFile) {
+    if (!outFile)
+    {
         cout << "Error: Failed to write account to file." << endl;
     }
     outFile.close();
@@ -285,7 +300,8 @@ void modify_account(int n)
     while (!File.eof() && !found)
     {
         File.read(reinterpret_cast<char *>(&ac), sizeof(account));
-        if (File.eof()) break; // Break if end of file is reached
+        if (File.eof())
+            break; // Break if end of file is reached
         if (ac.retacno() == n)
         {
             ac.show_account();
@@ -316,7 +332,8 @@ void delete_account(int n)
         return;
     }
     outFile.open("Temp.dat", ios::binary);
-    if (!outFile) {
+    if (!outFile)
+    {
         cout << "Error: Temporary file could not be opened for writing." << endl;
         return;
     }
@@ -327,17 +344,21 @@ void delete_account(int n)
         {
             outFile.write(reinterpret_cast<char *>(&ac), sizeof(account));
         }
-        else {
+        else
+        {
             found = true;
         }
     }
     inFile.close();
     outFile.close();
-    if (found) {
+    if (found)
+    {
         remove("account.dat");
         rename("Temp.dat", "account.dat");
         cout << "\n\n\tRecord Deleted ..";
-    } else {
+    }
+    else
+    {
         cout << "\n\n\tAccount number does not exist.";
         remove("Temp.dat");
     }
@@ -368,8 +389,9 @@ void display_all()
 // Function to deposit and withdraw amounts
 void deposit_withdraw(int n, int option)
 {
-    int amt;
+    long long amt; // Use long long to handle larger values
     bool found = false;
+    bool transaction_successful = false; // Flag to track if the transaction was successful
     account ac;
     fstream File;
     File.open("account.dat", ios::binary | ios::in | ios::out);
@@ -381,7 +403,8 @@ void deposit_withdraw(int n, int option)
     while (!File.eof() && !found)
     {
         File.read(reinterpret_cast<char *>(&ac), sizeof(account));
-        if (File.eof()) break; // Break if end of file is reached
+        if (File.eof())
+            break; // Break if end of file is reached
         if (ac.retacno() == n)
         {
             ac.show_account();
@@ -389,27 +412,33 @@ void deposit_withdraw(int n, int option)
             {
                 cout << "\n\n\tTO DEPOSIT AMOUNT ";
                 cout << "\n\nEnter The amount to be deposited: ";
-                while (!(cin >> amt) || amt < 0) {
-                    cout << "Invalid input. Please enter a positive amount: ";
+                while (!(cin >> amt) || amt <= 0 || amt > LLONG_MAX)
+                {
+                    cout << "Invalid input. Please enter a positive amount within the valid range: ";
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 }
-                ac.dep(amt);
+                ac.dep(static_cast<int>(amt));
+                transaction_successful = true;
             }
             if (option == 2)
             {
                 cout << "\n\n\tTO WITHDRAW AMOUNT ";
                 cout << "\n\nEnter The amount to be withdrawn: ";
-                while (!(cin >> amt) || amt < 0) {
-                    cout << "Invalid input. Please enter a positive amount: ";
+                while (!(cin >> amt) || amt <= 0 || amt > LLONG_MAX)
+                {
+                    cout << "Invalid input. Please enter a positive amount within the valid range: ";
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 }
-                int bal = ac.retdeposit() - amt;
+                int bal = ac.retdeposit() - static_cast<int>(amt);
                 if ((bal < 500 && ac.rettype() == 'S') || (bal < 1000 && ac.rettype() == 'C'))
                     cout << "Insufficient balance";
                 else
-                    ac.draw(amt);
+                {
+                    ac.draw(static_cast<int>(amt));
+                    transaction_successful = true;
+                }
             }
             int pos = static_cast<int>(File.tellg()) - sizeof(account);
             File.seekp(pos, ios::beg);
@@ -421,6 +450,10 @@ void deposit_withdraw(int n, int option)
     File.close();
     if (!found)
         cout << "\n\nRecord Not Found ";
+    else if (transaction_successful && option == 1)
+        cout << "\n\nAmount deposited successfully!";
+    else if (transaction_successful && option == 2)
+        cout << "\n\nAmount withdrawn successfully!";
 }
 
 // Introductory function
