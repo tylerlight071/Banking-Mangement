@@ -131,7 +131,7 @@ int main()
             cout << "\n\n\tEnter The account No. : ";
             cin >> num;
             deposit_withdraw(num, 1);
-            cout << "\n\nAmount deposited successfully!";
+            cout << "\n\nAmount deposited successfully! ";
             break;
         case '3':
             cout << "\n\n\tEnter The account No. : ";
@@ -347,5 +347,6 @@ void intro()
 {
     system("cls");
     cout << "\t\t\t\t Welcome To Lightwood Bank\n";
+    cout << "\t\t\t\t\n\n Press Enter to continue\n";
     cin.get();
 }
